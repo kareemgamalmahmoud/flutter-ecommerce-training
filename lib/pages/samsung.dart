@@ -1,4 +1,5 @@
 import 'package:ecomapp/compount/mydrawer.dart';
+import 'package:ecomapp/pages/moblist.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +9,18 @@ class Samsung extends StatefulWidget {
 }
 
 class _SamsungState extends State<Samsung> {
+
+  var map = [
+    {
+      'name':'p30 pro',
+      'year':'2020',
+    },
+    {
+      'name':'p40 pro',
+      'year':'2040',
+    },
+    ];
+
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -18,20 +31,16 @@ class _SamsungState extends State<Samsung> {
           centerTitle: true,
         ),
         drawer: MyDrawer(),
-        body: ListView(
-          children: <Widget>[Container(
-            height: 100,
-            width: double.infinity,
-            child: Card(
-              child: Row(children: <Widget>[
-                Expanded(flex:1,child: Image.asset('images/products/p30pro.jpg')),
-                Expanded(flex:2,child: Text("specification" , textAlign: TextAlign.center,))
-              ],),
-            ),
-          ),
-          ],
+        body: ListView.builder(
+          itemCount: map.length,
+          itemBuilder: (context, index) {
+            return MobList(name: map[index]['name'],year: map[index]['year'],);
+          },
         ),
       ),
     );
   }
 }
+
+
+
